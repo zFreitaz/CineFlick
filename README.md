@@ -1,6 +1,6 @@
 # CineFlick 🎬
 
-Aplicação móvel de catálogo cinematográfico interativo desenvolvida com **React Native** e **Expo Router**. O projeto explora conceitos de componentes modulares com props, navegação estruturada por rotas, gestão de estados de favoritos e estilização consistente em Flexbox.
+Aplicação móvel de catálogo cinematográfico interativo desenvolvida com **React Native** e **Expo Router**. O projeto explora componentes modulares com passagem de props, navegação estruturada por rotas, gestão de estados locais e estilização consistente em Flexbox.
 
 ---
 
@@ -37,7 +37,9 @@ O **CineFlick** é uma solução pensada para centralizar informações sobre fi
 
 ---
 
-## 🚀 Como Executar o Projeto
+## 🚀 Instruções de Execução
+
+Para executar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
 ```bash
