@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { View, Text, StyleSheet, Image, Pressable, ImageSourcePropType } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, Pressable, StyleSheet, ImageSourcePropType } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 interface FilmeCardProps {
   id: string;
   titulo: string;
   genero: string;
   ano: number;
-  poster: string | ImageSourcePropType;
+  poster: ImageSourcePropType;
   aoPressionar: (id: string) => void;
 }
 
@@ -21,11 +22,8 @@ export default function FilmeCard({
   const [favorito, setFavorito] = useState(false);
 
   function alternarFavorito() {
-    setFavorito((estadoAnterior) => !estadoAnterior);
+    setFavorito(!favorito);
   }
-
-
-  const fonteImagem = typeof poster === "string" ? { uri: poster } : poster;
 
   return (
     <Pressable
@@ -35,38 +33,32 @@ export default function FilmeCard({
       ]}
       onPress={() => aoPressionar(id)}
     >
-      <Image source={fonteImagem} style={styles.poster} />
+      <Image source={poster} style={styles.poster} resizeMode="cover" />
 
-      <View style={styles.infoFilme}>
-        <View style={styles.cabecalhoCard}>
-          <Text style={styles.tituloFilme}>{titulo}</Text>
+      <View style={styles.infoContainer}>
+        <View style={styles.topoCard}>
+          <Text style={styles.titulo} numberOfLines={2}>
+            {titulo}
+          </Text>
 
+          {/* Coração de Favorito: vinho (#49111C) quando marcado */}
           <Pressable
-            hitSlop={8}
-            onPress={(e) => {
-              e.stopPropagation();
-              alternarFavorito();
-            }}
-            style={({ pressed }) => [
-              styles.botaoFavorito,
-              pressed && styles.botaoFavoritoPressionado,
-            ]}
+            style={styles.botaoFavorito}
+            onPress={alternarFavorito}
+            hitSlop={12}
           >
-            <Text
-              style={[
-                styles.textoFavorito,
-                favorito && styles.textoFavoritoAtivo,
-              ]}
-            >
-              {favorito ? "★ Favorito" : "☆ Favoritar"}
-            </Text>
+            <Ionicons
+              name={favorito ? "heart" : "heart-outline"}
+              size={24}
+              color={favorito ? "#49111C" : "#A9927D"}
+            />
           </Pressable>
         </View>
 
-        <Text style={styles.generoFilme}>{genero}</Text>
+        <Text style={styles.genero}>{genero}</Text>
 
-        <View style={styles.tagAno}>
-          <Text style={styles.textoTagAno}>{ano}</Text>
+        <View style={styles.badgeAno}>
+          <Text style={styles.textoAno}>{ano}</Text>
         </View>
       </View>
     </Pressable>
@@ -77,73 +69,61 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
-    borderRadius: 14,
-    overflow: "hidden",
+    borderRadius: 16,
     marginBottom: 14,
-    elevation: 3,
+    overflow: "hidden",
+    alignItems: "center",
+    elevation: 2,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
-    shadowRadius: 6,
+    shadowRadius: 3,
   },
   cardPressionado: {
     opacity: 0.9,
-    transform: [{ scale: 0.99 }],
   },
   poster: {
     width: 95,
-    height: 140,
-    backgroundColor: "#E5E5E5",
+    height: 135,
+    backgroundColor: "#DDD",
   },
-  infoFilme: {
+  infoContainer: {
     flex: 1,
-    padding: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     justifyContent: "space-between",
+    height: 135,
   },
-  cabecalhoCard: {
+  topoCard: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
   },
-  tituloFilme: {
+  titulo: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#0A0908",
+    fontWeight: "bold",
+    color: "#111111",
     flex: 1,
-    marginRight: 8,
+    paddingRight: 8,
   },
   botaoFavorito: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 6,
-    backgroundColor: "#F2F4F3",
+    padding: 2,
   },
-  botaoFavoritoPressionado: {
-    opacity: 0.7,
-  },
-  textoFavorito: {
-    fontSize: 12,
-    fontWeight: "600",
-    color: "#A9927D",
-  },
-  textoFavoritoAtivo: {
-    color: "#49111C",
-    fontWeight: "bold",
-  },
-  generoFilme: {
+  genero: {
     fontSize: 13,
-    color: "#A9927D",
+    color: "#888888",
+    marginVertical: 4,
   },
-  tagAno: {
+  badgeAno: {
     alignSelf: "flex-start",
     backgroundColor: "#49111C",
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: 6,
   },
-  textoTagAno: {
-    color: "#F2F4F3",
-    fontSize: 11,
-    fontWeight: "700",
+  textoAno: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "bold",
   },
 });

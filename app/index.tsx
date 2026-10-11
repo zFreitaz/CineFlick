@@ -1,6 +1,6 @@
+import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { router } from "expo-router";
-import Botao from "../components/Botao";
 
 export default function Home() {
   function irParaCatalogo() {
@@ -13,42 +13,44 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.painelSuperior}>
-        <View style={styles.conteudoCentral}>
-          <Image
-            source={{
-              uri: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png",
-            }}
-            style={styles.logo}
-          />
+      
+      <View style={styles.topoClaro}>
+        <Image
+          source={{
+            uri: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png",
+          }}
+          style={styles.logo}
+        />
 
-          <Text style={styles.titulo}>CineFlick</Text>
+        <Text style={styles.titulo}>CineFlick</Text>
 
-          <Text style={styles.descricao}>
-            O teu catálogo pessoal de filmes e estreias.
-          </Text>
-        </View>
+        <Text style={styles.descricao}>
+          O teu catálogo pessoal de filmes e estreias.
+        </Text>
       </View>
 
-      <View style={styles.painelInferior}>
+      
+      <View style={styles.areaInferior}>
         
-        <View style={styles.areaBotaoPrincipal}>
-          <Botao
-            titulo="Aceder ao Catálogo"
-            aoPressionar={irParaCatalogo}
-            icone="film-outline"
-          />
-        </View>
+        <Pressable
+          style={({ pressed }) => [
+            styles.botaoCatalogo,
+            pressed && styles.botaoPressionado,
+          ]}
+          onPress={irParaCatalogo}
+        >
+          <Text style={styles.textoBotaoCatalogo}>Aceder ao Catálogo</Text>
+        </Pressable>
 
         
         <Pressable
           style={({ pressed }) => [
-            styles.botaoSecundario,
-            pressed && styles.botaoPressionado,
+            styles.linkSobre,
+            pressed && styles.linkPressionado,
           ]}
           onPress={irParaSobre}
         >
-          <Text style={styles.textoBotaoSecundario}>Sobre o Projeto</Text>
+          <Text style={styles.textoLinkSobre}>Sobre o Projeto</Text>
         </Pressable>
       </View>
     </View>
@@ -60,60 +62,66 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#49111C",
   },
-  painelSuperior: {
-    flex: 3.5,
+  topoClaro: {
+    flex: 3,
     backgroundColor: "#F2F4F3",
-    borderBottomLeftRadius: 60,
+    borderBottomLeftRadius: 80,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 24,
-  },
-  conteudoCentral: {
-    alignItems: "center",
-    width: "100%",
+    paddingHorizontal: 28,
   },
   logo: {
-    width: 110,
-    height: 110,
+    width: 140,
+    height: 140,
+    resizeMode: "contain",
     marginBottom: 20,
   },
   titulo: {
-    fontSize: 34,
+    fontSize: 36,
     fontWeight: "900",
-    color: "#0A0908",
-    letterSpacing: 1.5,
+    color: "#1A1A1A",
     marginBottom: 8,
   },
   descricao: {
     fontSize: 16,
-    color: "#A9927D",
+    color: "#8E8E93",
     textAlign: "center",
     lineHeight: 22,
     maxWidth: 280,
   },
-  painelInferior: {
-    flex: 1.5,
-    backgroundColor: "transparent",
+  areaInferior: {
+    flex: 1.4,
+    backgroundColor: "#49111C",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+    gap: 16,
+  },
+  botaoCatalogo: {
+    width: "100%",
+    backgroundColor: "#F2F4F3",
+    paddingVertical: 16,
+    borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 28,
-    gap: 8,
   },
-  areaBotaoPrincipal: {
-    width: "100%",
-  },
-  botaoSecundario: {
-    width: "100%",
-    paddingVertical: 8,
-    alignItems: "center",
-  },
-  textoBotaoSecundario: {
-    color: "#F2F4F3",
-    fontSize: 14,
-    fontWeight: "600",
-    textDecorationLine: "underline",
+  textoBotaoCatalogo: {
+    color: "#49111C",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   botaoPressionado: {
-    opacity: 0.7,
+    opacity: 0.85,
+  },
+  linkSobre: {
+    paddingVertical: 6,
+  },
+  textoLinkSobre: {
+    color: "#C5B2B5",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  linkPressionado: {
+    opacity: 0.6,
   },
 });

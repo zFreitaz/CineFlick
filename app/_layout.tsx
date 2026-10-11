@@ -1,5 +1,5 @@
-import { router, Stack } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { Stack, router } from "expo-router";
+import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Layout() {
@@ -11,9 +11,8 @@ export default function Layout() {
         },
         headerTintColor: "#F2F4F3",
         headerTitleStyle: {
-          fontWeight: "700",
+          fontWeight: "bold",
         },
-        headerTitleAlign: "center",
       }}
     >
       <Stack.Screen
@@ -22,8 +21,6 @@ export default function Layout() {
           headerShown: false,
         }}
       />
-
-      
       <Stack.Screen
         name="catalogo"
         options={{
@@ -31,27 +28,20 @@ export default function Layout() {
           headerRight: () => (
             <Pressable
               onPress={() => router.push("/sobre")}
-              style={({ pressed }) => [
-                styles.botaoConfig,
-                pressed && styles.botaoPressionado,
-              ]}
               hitSlop={10}
+              style={({ pressed }) => [{ opacity: pressed ? 0.6 : 1 }]}
             >
-              <Ionicons name="settings-outline" size={22} color="#F2F4F3" />
+              <Ionicons name="settings-sharp" size={22} color="#F2F4F3" />
             </Pressable>
           ),
         }}
       />
-
       <Stack.Screen
         name="detalhes"
         options={{
           title: "Detalhes",
-          headerBackVisible: false,
-          headerLeft: () => null,
         }}
       />
-
       <Stack.Screen
         name="sobre"
         options={{
@@ -61,16 +51,3 @@ export default function Layout() {
     </Stack>
   );
 }
-
-
-const styles = StyleSheet.create({
-  botaoConfig: {
-    padding: 6,
-    marginRight: 4,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  botaoPressionado: {
-    opacity: 0.6,
-  },
-});
