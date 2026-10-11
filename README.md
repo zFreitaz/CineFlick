@@ -1,41 +1,45 @@
 # CineFlick 🎬
 
-Aplicação móvel desenvolvida em **React Native** com **Expo Router** para exploração, consulta e gestão de filmes favoritos. O projeto implementa arquitetura modular por componentes, navegação baseada em ficheiros e gestão de estados locais, desenvolvido no âmbito da unidade curricular de Programação para Dispositivos Móveis I da Fatec Registro.
+Aplicação móvel de catálogo cinematográfico interativo desenvolvida com **React Native** e **Expo Router**. O projeto explora conceitos de componentes modulares com props, navegação estruturada por rotas, gestão de estados de favoritos e estilização consistente em Flexbox.
 
 ---
 
-## 📱 Visão Geral da Aplicação
-
-O **CineFlick** oferece uma experiência simples e interativa de catálogo cinematográfico:
-- **Ecrã Principal (`index.tsx`):** Apresentação da identidade visual do app com navegação rápida para o acervo.
-- **Catálogo Dinâmico (`catalogo.tsx`):** Renderização de listagem vertical com `FlatList`, simulação de carregamento com `ActivityIndicator` e atalho para informações gerais.
-- **Detalhes da Obra (`detalhes.tsx`):** Leitura de rotas dinâmicas com parâmetros via `useLocalSearchParams`, exibição de sinopse, classificação, duração e sistema de favoritos em tempo real.
-- **Sobre o Projeto (`sobre.tsx`):** Ecrã de contextualização do projeto e documentação da aplicação.
+## 👨‍💻 Desenvolvedor
+- **Autor:** Vinícius Freitas Leandro da Silva
+- **RA:** 2991392513031
+- **Instituição:** Fatec Registro
+- **Disciplina:** Programação para Dispositivos Móveis I
 
 ---
 
-## 🧩 Componentes Reutilizáveis
+## 📱 Sobre o CineFlick
+O **CineFlick** é uma solução pensada para centralizar informações sobre filmes de forma intuitiva e dinâmica. O utilizador pode navegar pelo catálogo, consultar sinopses detalhadas, pontuações, tempo de duração e favoritar as suas obras preferidas em tempo real.
 
-Para assegurar manutenibilidade e reutilização de código, os seguintes componentes foram estruturados em diretório dedicado (`components/`):
-- **`FilmeCard.tsx`:** Responsável pela apresentação padronizada de cada título no catálogo, consumindo dados via `props` (`titulo`, `genero`, `ano`, `poster`, etc.).
-- **`Botao.tsx`:** Botão reutilizável com tipagem TypeScript estrita, ícones dinâmicos (`Ionicons`) e feedback tátil configurado com `Pressable`.
+### Principais Telas:
+- **Início (`index.tsx`):** Ponto de entrada com a identidade visual da aplicação e botão de acesso direto ao catálogo.
+- **Catálogo (`catalogo.tsx`):** Apresentação vertical dos títulos via `FlatList`, carregamento assíncrono simulado com `ActivityIndicator` e atalho para o ecrã institucional.
+- **Detalhes (`detalhes.tsx`):** Leitura de rotas dinâmicas com parâmetros via `useLocalSearchParams`, métricas completas, sinopse detalhada e botão de favoritar interativo.
+- **Sobre (`sobre.tsx`):** Apresentação das informações do projeto, arquitetura e dados da disciplina.
 
 ---
 
-## 🛠️ Tecnologias e Recursos
+## 🧩 Componentes Modulares
+- **`components/FilmeCard.tsx`:** Componente responsável pela apresentação padronizada de cada título no catálogo, consumindo dados via `props` (`titulo`, `genero`, `ano`, `poster`, etc.).
+- **`components/Botao.tsx`:** Botão reutilizável com tipagem TypeScript, ícones integrados e feedback tátil configurado com `Pressable`.
 
-- **React Native** & **TypeScript**
+---
+
+## 🛠️ Tecnologias Utilizadas
+- **React Native** com **TypeScript**
 - **Expo** & **Expo Router**
-- **Hooks:** `useState` (gestão do estado de favoritos) e `useEffect` (simulação de requisição/carregamento)
-- **Design & Layout:** Flexbox e `StyleSheet`
+- **Hooks:** `useState` (favoritos) e `useEffect` (simulação de carregamento)
+- **Estilização:** `StyleSheet` e `Flexbox`
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar o Projeto
 
-Clone o repositório e instale as dependências locais:
-
+1. Clone o repositório:
 ```bash
 git clone [https://github.com/zFreitaz/CineFlick.git](https://github.com/zFreitaz/CineFlick.git)
 cd CineFlick
-npm install
